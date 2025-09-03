@@ -2,11 +2,13 @@ package com.example.myapplication;
 
 import android.app.LocaleManager;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -41,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             sorteado = (int) (Math.random()*(max-min)+min);
 
             textViewResult.setText(Integer.toString(sorteado));
-
-
         });
 
         LocaleManager lm;
@@ -52,5 +52,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("Sorteado", textViewResult.getText().toString() );
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        textViewResult.setText(savedInstanceState.getString("sorteado"));
     }
 }
