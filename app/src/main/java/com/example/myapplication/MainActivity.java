@@ -55,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putString("Sorteado", textViewResult.getText().toString() );
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("sorteado",textViewResult.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        textViewResult.setText(savedInstanceState.getString("sorteado"));
+        if(savedInstanceState!=null){
+            textViewResult.setText(savedInstanceState.getString("sorteado"));
+        }
     }
 }
