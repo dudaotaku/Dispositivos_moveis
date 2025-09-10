@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class IMCResultado extends AppCompatActivity {
 
 
     TextView tvPeso, tvAltura, tvImc;
+    Button button;
     ImageView imageView;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,16 +24,21 @@ public class IMCResultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imcresultado);
+        button = findViewById(R.id.buttonReturn);
+
+        button.setOnClickListener(v -> {
+            finish();
+        });
+
         tvPeso=findViewById(R.id.tvPeso);
         tvAltura=findViewById(R.id.tvAltura);
         tvImc=findViewById(R.id.tvImc);
 
         imageView=findViewById(R.id.imageView);
 
-        Bundle b = getIntent().getExtras();
-
-        float peso=b.getFloat("peso");
-        float altura = b.getFloat("altura");
+        Bundle bundle = getIntent().getExtras();
+        float peso=bundle.getFloat("peso");
+        float altura = bundle.getFloat("altura");
 
         float imc = (peso)/(altura*altura);
 
@@ -39,6 +46,6 @@ public class IMCResultado extends AppCompatActivity {
         tvAltura.setText(Float.toString(altura));
         tvImc.setText(Float.toString(imc));
 
-        if(imc);
+
     }
 }
