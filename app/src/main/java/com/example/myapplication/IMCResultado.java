@@ -36,8 +36,8 @@ public class IMCResultado extends AppCompatActivity {
         imageView=findViewById(R.id.imageView);
 
         Bundle bundle = getIntent().getExtras();
-        float peso=bundle.getFloat("peso");
-        float altura = bundle.getFloat("altura");
+        float peso=bundle.getFloat("Peso");
+        float altura = bundle.getFloat("Altura");
 
         float imc = (peso)/(altura*altura);
 
@@ -57,7 +57,6 @@ public class IMCResultado extends AppCompatActivity {
         }else if(imc>40){
             imageView.setImageResource(R.drawable.obesidade3);
         }
-
 
     }
 
