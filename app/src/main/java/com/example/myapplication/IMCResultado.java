@@ -30,8 +30,7 @@ public class IMCResultado extends AppCompatActivity {
             finish();
         });
 
-        tvPeso=findViewById(R.id.tvPeso);
-        tvAltura=findViewById(R.id.tvAltura);
+
         tvImc=findViewById(R.id.tvImc);
 
         imageView=findViewById(R.id.imageView);
@@ -42,10 +41,25 @@ public class IMCResultado extends AppCompatActivity {
 
         float imc = (peso)/(altura*altura);
 
-        tvPeso.setText(Float.toString(peso));
-        tvAltura.setText(Float.toString(altura));
+
         tvImc.setText(Float.toString(imc));
+
+        if(imc<18.5){
+            imageView.setImageResource(R.drawable.abaixopeso);
+        } else if (imc>18.5) {
+            imageView.setImageResource(R.drawable.normal);
+        } else if (imc>25 && imc<29.9) {
+            imageView.setImageResource(R.drawable.sobrepeso);
+        } else if (imc>30 && imc<34.9) {
+            imageView.setImageResource(R.drawable.obesidade1);
+        } else if (imc>35 && imc<39.9) {
+            imageView.setImageResource(R.drawable.obesidade2);
+        }else if(imc>40){
+            imageView.setImageResource(R.drawable.obesidade3);
+        }
 
 
     }
-}
+
+
+    }
