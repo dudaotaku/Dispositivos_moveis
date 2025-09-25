@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         FragmentoA fragmentoA = new FragmentoA();
         FragmentoB fragmentoB = new FragmentoB();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
 
         findViewById(R.id.buttonA).setOnClickListener(v -> {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("msg", "Hello =)");
                 fragmentoA.setArguments(bundle);
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.buttonB).setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout,fragmentoB);
             fragmentTransaction.commit();
         });
