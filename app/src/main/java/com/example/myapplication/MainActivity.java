@@ -33,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
 
-        findViewById(R.id.buttonA).setOnClickListener(v -> {
+        findViewById(R.id.buttonEntrar).setOnClickListener(v -> {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Bundle bundle = new Bundle();
-                bundle.putString("msg", "Hello =)");
+                bundle.putString("msg", "Bem vindo =)");
                 fragmentoA.setArguments(bundle);
 
                 fragmentTransaction.replace(R.id.frameLayout,fragmentoA);
                 fragmentTransaction.commit();
         });
 
-        findViewById(R.id.buttonB).setOnClickListener(v -> {
+        findViewById(R.id.buttonCadastar).setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout,fragmentoB);
             fragmentTransaction.commit();

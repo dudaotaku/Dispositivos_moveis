@@ -6,14 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".FragmentoB">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragmento B"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/nome"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Nome"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/data_nascimento"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/data_nascimento"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="Data de nascimento"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/email_cads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
+
+    <EditText
+        android:id="@+id/email_cads"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/senha_cads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/data_nascimento" />
+
+    <Button
+        android:id="@+id/buttonCadastrar_cads"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:text="Cadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/senha_cads"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/> <!-- Espaço entre senha e botão -->
+
+
+    <EditText
+        android:id="@+id/senha_cads"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCadastrar_cads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_cads" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+

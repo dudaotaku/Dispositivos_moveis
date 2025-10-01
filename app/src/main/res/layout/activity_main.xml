@@ -9,36 +9,56 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="303dp"
-        android:layout_height="428dp"
-        android:layout_marginBottom="84dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonA">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/buttonB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FragmentoB"
+    <EditText
+        android:id="@+id/senha"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEntrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonA"
-        app:layout_constraintTop_toTopOf="@+id/buttonA" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <Button
-        android:id="@+id/buttonA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FragmentoA"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        app:layout_constraintEnd_toStartOf="@+id/buttonB"
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="292dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/senha"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"/>
+
+    <Button
+        android:id="@+id/buttonEntrar"
+        android:layout_width="291dp"
+        android:layout_height="54dp"
+        android:text="Entrar"
+        app:layout_constraintTop_toBottomOf="@id/senha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/buttonCadastar"
+        android:layout_width="288dp"
+        android:layout_height="52dp"
+        android:text="Cadastrar"
+        app:layout_constraintTop_toBottomOf="@id/buttonEntrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
