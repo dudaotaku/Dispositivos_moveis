@@ -7,58 +7,47 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragmento_imc#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragmento_imc extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragmento_imc() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragmento_imc.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragmento_imc newInstance(String param1, String param2) {
-        fragmento_imc fragment = new fragmento_imc();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    TextView tvImc;
+    ImageView imageView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragmento_imc, container, false);
+
+        View s = inflater.inflate(R.layout.fragment_fragmento_imc, container, false);
+        tvImc=s.findViewById(R.id.tvImc);
+        imageView=s.findViewById(R.id.imageView);
+        Bundle bun = this.getArguments();
+        float peso= bun.getFloat("Peso");
+        float altura = bun.getFloat("Altura");
+        float imc = (peso)/(altura*altura);
+
+        tvImc.setText(Float.toString(imc));
+
+        if(imc<18.5){
+            imageView.setImageResource(R.drawable.abaixopeso);
+        } else if (imc>18.5) {
+            imageView.setImageResource(R.drawable.normal);
+        } else if (imc>25 && imc<29.9) {
+            imageView.setImageResource(R.drawable.sobrepeso);
+        } else if (imc>30 && imc<34.9) {
+            imageView.setImageResource(R.drawable.obesidade1);
+        } else if (imc>35 && imc<39.9) {
+            imageView.setImageResource(R.drawable.obesidade2);
+        }else if(imc>40){
+            imageView.setImageResource(R.drawable.obesidade3);
+        }
+        return s;
     }
 }

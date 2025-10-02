@@ -1,0 +1,16 @@
+1-
+O ciclo de vida é essencial para realizar teste e verificar onde pode estar ocorrendo algum erro na aplicação partir do ciclo de vida, e dessa forma ele vai desde onCreate ate a onDestroy dessa forma evitando que o ciclo de vida do sistema nunca seja fechando ajudando no desempenho do sistema.
+
+onSaveInstanceState(): Ele é utilizado para salvar o dado, ele é chamado na recriação do layout no ciclo de vida.
+onRestoreInstanceState(): é chamado após o onDestroy para e geralmente é utilizado com um if dentro, pois ele verifica se existe algum dado salva no "onSaveInstanceState" para restaurar esse dado para a tela.
+Esse dois métodos se relacionam com o conceito de "State Restoration", pois através deles é possível realizar a restauração dos dados caso deseje.
+
+
+2-
+manifest: No manifesto fica registrado a regra de negocio do sistema, onde pode ser encontra a versão da API utilizada as activity,os intents, entre outros componentes.
+
+res:Package responsável pelo armazenamento das pastas do layout do sistema, como: o xml, imagens, string, entre outros. ele é a pasta de arquivos que vai mexer diretamente com a camada gráfica do android studio, a camada ASK
+
+R:Classe nativa do android studio utilizada para instanciar uma variável.
+
+activitys: são paginas criadas para realizar a programação para mobile, existe diversos tipos de activitys que podem ser utilizadas para o desenvolvimento, cada uma com um proposito ou linguagem em especifica.

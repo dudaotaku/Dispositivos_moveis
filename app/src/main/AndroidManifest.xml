@@ -13,6 +13,14 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".fragmento_imc"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".fragmento_info"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".IMCResultado"
             android:exported="true" />
         <activity

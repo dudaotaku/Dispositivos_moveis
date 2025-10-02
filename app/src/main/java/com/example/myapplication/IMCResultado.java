@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class IMCResultado extends AppCompatActivity {
 
 
-    TextView tvPeso, tvAltura, tvImc, tvnome;
-    Button button;
+
+    Button button, buttonImc,buttonInfo;
     ImageView imageView;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,35 +32,46 @@ public class IMCResultado extends AppCompatActivity {
             finish();
         });
 
-        tvImc=findViewById(R.id.tvImc);
+        fragmento_imc fragmento_imc = new fragmento_imc();
+        fragmento_info fragmento_info = new fragmento_info();
 
-        imageView=findViewById(R.id.imageView);
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         Bundle bundle = getIntent().getExtras();
-        float peso= bundle.getFloat("Peso");
-        float altura = bundle.getFloat("Altura");
-        String nome = bundle.getString("Nome");
 
-        float imc = (peso)/(altura*altura);
+        fragmento_info.setArguments(bundle);
+        fragmento_imc.setArguments(bundle);
 
-        /*tvPeso.setText(Float.toString(peso));
-        tvAltura.setText(Float.toString(altura));
-        tvnome.setText(String.valueOf(nome));*/
-        tvImc.setText(Float.toString(imc));
+        buttonInfo = findViewById(R.id.buttonInfo);
+        buttonInfo.setOnClickListener(v -> {
 
-        if(imc<18.5){
-            imageView.setImageResource(R.drawable.abaixopeso);
-        } else if (imc>18.5) {
-            imageView.setImageResource(R.drawable.normal);
-        } else if (imc>25 && imc<29.9) {
-            imageView.setImageResource(R.drawable.sobrepeso);
-        } else if (imc>30 && imc<34.9) {
-            imageView.setImageResource(R.drawable.obesidade1);
-        } else if (imc>35 && imc<39.9) {
-            imageView.setImageResource(R.drawable.obesidade2);
-        }else if(imc>40){
-            imageView.setImageResource(R.drawable.obesidade3);
-        }
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout2,fragmento_info);
+
+            fragmentTransaction.commit();
+        });
+
+        buttonImc = findViewById(R.id.buttonImc);
+        buttonImc.setOnClickListener(v -> {
+
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout2,fragmento_imc);
+
+            fragmentTransaction.commit();
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

@@ -34,7 +34,7 @@
         android:id="@+id/buttonVoltar"
         android:layout_width="106dp"
         android:layout_height="52dp"
-        android:text="Button"
+        android:text="Voltar"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
