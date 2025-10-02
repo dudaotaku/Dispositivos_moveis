@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class IMCResultado extends AppCompatActivity {
 
 
-    TextView tvPeso, tvAltura, tvImc;
+    TextView tvPeso, tvAltura, tvImc, tvnome;
     Button button;
     ImageView imageView;
     @SuppressLint("MissingInflatedId")
@@ -24,24 +24,26 @@ public class IMCResultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imcresultado);
-        button = findViewById(R.id.buttonReturn);
+        button = findViewById(R.id.buttonVoltar);
 
         button.setOnClickListener(v -> {
             finish();
         });
-
 
         tvImc=findViewById(R.id.tvImc);
 
         imageView=findViewById(R.id.imageView);
 
         Bundle bundle = getIntent().getExtras();
-        float peso=bundle.getFloat("Peso");
+        float peso= bundle.getFloat("Peso");
         float altura = bundle.getFloat("Altura");
+        String nome = bundle.getString("Nome");
 
         float imc = (peso)/(altura*altura);
 
-
+        /*tvPeso.setText(Float.toString(peso));
+        tvAltura.setText(Float.toString(altura));
+        tvnome.setText(String.valueOf(nome));*/
         tvImc.setText(Float.toString(imc));
 
         if(imc<18.5){

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     Button b;
-    EditText edpeso,edaltura;
+    EditText edpeso,edaltura,idNome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,15 +20,19 @@ public class MainActivity extends AppCompatActivity {
         b=findViewById(R.id.Button);
         edpeso=findViewById(R.id.EdPeso);
         edaltura=findViewById(R.id.EdAltura);
+        idNome=findViewById(R.id.idNome);
         b.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), IMCResultado.class);
             //passar os dados para o bundle
 
             float peso = Float.parseFloat(edpeso.getText().toString());
             float altura = Float.parseFloat(edaltura.getText().toString());
+            String nome = String.join(idNome.getText().toString());
+
 
             intent.putExtra("Altura", altura);
             intent.putExtra("Peso", peso);
+            intent.putExtra("Nome", nome);
 
             startActivity(intent);
         });
