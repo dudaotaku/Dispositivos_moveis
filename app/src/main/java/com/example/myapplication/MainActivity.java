@@ -33,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        nomes = new ArrayList<>(){{
-            add("Apple");
-            add("Banana");
-            add("Cherry");
-        }};
+        ControllerPlaneta = new ControllerPlaneta;
+
+        PlanetaAdapter = new PlanetaAdapter(this.R.layout.);
+
         listView = findViewById(R.id.listView);
         editText = findViewById(R.id.editText);
         button = findViewById(R.id.Button);
