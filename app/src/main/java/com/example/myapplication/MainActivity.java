@@ -18,9 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-
-
-
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> nomes;
