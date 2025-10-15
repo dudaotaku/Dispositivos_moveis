@@ -25,49 +25,26 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> nomes;
     EditText editText;
+    ControllerPlaneta controllerPlaneta;
     Button button;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ControllerPlaneta = new ControllerPlaneta;
+        controllerPlaneta = new ControllerPlaneta();
 
-        PlanetaAdapter = new PlanetaAdapter(this.R.layout.);
-
+        PlanetaAdapter adapter = new PlanetaAdapter(this,R.layout.item_listagem, controllerPlaneta.getPlanetas());
         listView = findViewById(R.id.listView);
-        editText = findViewById(R.id.editText);
-        button = findViewById(R.id.Button);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                nomes
-        );
-        //Define um tratamento de click sobre o botão
-        button.setOnClickListener( v ->{
-            String nome = editText.getText().toString();
-            nomes.add(nome);
-            adapter.notifyDataSetChanged();
-        });
-        //Definer um tratamento para o evento de click sobre o item da lista
-        listView.setOnItemClickListener(
-                (parent,view, position, id)-> {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Elemento clicado"+nomes.get(position),
-                            Toast.LENGTH_SHORT).show();
+        button=findViewById(R.id.Button);
+
+        //Define um tratamento para o evento de click sobre o bottão
+        button.setOnClickListener(v -> {
 
         });
-
-        listView.setOnItemLongClickListener(
-                (parent,view, position, id)-> {
-                    nomes.remove(position);
-                    adapter.notifyDataSetChanged();
-                    return true;
-                }
-        );
+        //Definir um tratamento para o evento de click sobre o item da lista
+        listView.setOnItemClickListener((parent, view, position, id) -> {});
         listView.setAdapter(adapter);
     }
 }

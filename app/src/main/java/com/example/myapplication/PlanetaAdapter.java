@@ -8,29 +8,35 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.List;
 
 public class PlanetaAdapter extends Planeta{
 
     Context mContext;
-    int layoutResorceId;
-    View view;
+    int layoutResourceId;
 
-    public PlanetaAdapter(@NonNull Context context, int resource, @NonNull List<Planeta> objects){
+    public PlanetaAdapter(@NonNull Context context, int resource, @NonNull List<Planeta> objects) {
         super(context, resource, objects);
         this.mContext = context;
-        this.layoutResorceId = resource;
+        this.layoutResourceId = resource;
     }
-
     @NonNull
     @Override
-    public View getView (int position, @NonNull view convertView, @NonNull ViewGroup parent){
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        //Inflar o layout XML
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(layoutResorceId,parent,false);
+        View view = inflater.inflate(layoutResourceId, parent, false);
 
         ImageView imageView = view.findViewById(R.id.imageView);
-        TextView textView =view.findViewById(R.id.)
-    };
+        TextView  textView = view.findViewById(R.id.tvNome);
+
+        Planeta planeta = getItem(position);
+        imageView.setImageResource(planeta.foto);
+        textView.setText(planeta.nome);
+
+        return view;
+    }
 
 }
