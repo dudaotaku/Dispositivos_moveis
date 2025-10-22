@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,16 @@ public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
 
        // imageView.setImageResource(appInfo.logo);
         //tvAppname.setText(appInfo.loadLabel(mContext.getPackageManager()).toString());
+
+
+        convertView.setOnClickListener(v -> {
+            Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(appInfo.packageName);
+            if (launchIntent != null) {
+                mContext.startActivity(launchIntent);
+            } else {
+                Log.e("MainActivity", "Não foi possivel iniciar o aplicativo" + appInfo.packageName);
+            }
+        });
 
         return convertView;
        // return super.getView(position, convertView, parent);
