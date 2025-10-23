@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        simplePaint = findViewById(R.id.simplePaint);
         findViewById(R.id.button).setOnClickListener(v -> {
             new ColorPickerDialog.Builder(this)
                     .setTitle("ColorPicker Dialog")
