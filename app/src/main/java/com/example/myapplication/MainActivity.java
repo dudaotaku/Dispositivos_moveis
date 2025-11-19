@@ -19,4 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     }
+
+    public void getLocation(){
+        locationManager.getLastKnownLocation();
+    }
 }
