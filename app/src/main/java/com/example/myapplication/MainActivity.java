@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
     public void showLocationOnMap(double latitude, double longitude){
         GeoPoint userLocation = new GeoPoint(latitude,longitude);
         mapView.getController().setCenter(userLocation);
-        mapView.getController().setCenter(userLocation);
-        //mapView.
+        mapView.getController().animateTo(userLocation);
+        mapView.getController().setZoom(18.0);
     }
 
     public void requisitandoPermissao(){
