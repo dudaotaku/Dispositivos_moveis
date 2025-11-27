@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,17 +13,25 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimplePaint extends View {
 
-    Paint mPaint;
-    Path mPath;
-    public void setup(){
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(10);
-        mPaint.setColor(Color.BLACK);
-        mPath = new Path();
+
+    List<Paint> mPaintList;
+    List<Path> mPathList;
+    Paint currentPaint;
+    Path currentPath;
+    ColorDrawable currentColor;
+
+    public void setup() {
+        mPaintList = new ArrayList<Paint>();
+        mPathList = new ArrayList<Path>();
+        currentColor = new ColorDrawable();
+        currentColor.setColor(Color.BLACK);
+        initLayerDraw();
+
     }
 
     public SimplePaint(Context context) {
@@ -48,25 +57,39 @@ public class SimplePaint extends View {
 
     }
 
+    public void initLayerDraw(){
+        currentPaint = new Paint();
+        currentPath = new Path();
+        currentPaint.setStyle(Paint.Style.STROKE);
+        currentPaint.setStrokeWidth(10);
+        currentPaint.setColor(currentColor.getColor());
+    }
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(mPath,mPaint);
+        for(int i=0;i<mPaintList.size(); i++){
+            canvas.drawPath(mPathList.get(i),mPaintList.get(i));
+        }
+        canvas.drawPath(currentPath, currentPaint);
         //canvas.save();
 
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mPath.moveTo(event.getX(),event.getY());
+                currentPath.moveTo(event.getX(), event.getY());
                 return true;
             case MotionEvent.ACTION_MOVE:
-                mPath.lineTo(event.getX(),event.getY());
+                currentPath.lineTo(event.getX(), event.getY());
                 break;
             case MotionEvent.ACTION_UP:
+                currentPath.lineTo(event.getX(), event.getY());
+                mPaintList.add(currentPaint);
+                mPathList.add(currentPath);
+                initLayerDraw();
                 break;
             default:
                 return false;
@@ -74,8 +97,9 @@ public class SimplePaint extends View {
         invalidate();
         return true;
     }
-    public void setColor(int color){
-        mPaint.setColor(color);
-    }
 
+    public void setColor(Color color) {
+        currentColor.setColor(color.toArgb());
+        currentPaint.setColor(color.toArgb());
+    }
 }

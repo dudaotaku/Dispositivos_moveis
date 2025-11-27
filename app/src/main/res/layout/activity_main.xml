@@ -10,21 +10,96 @@
 
     <com.example.myapplication.SimplePaint
         android:id="@+id/simplePaint"
-        android:layout_width="414dp"
-        android:layout_height="648dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="401dp"
+        android:layout_height="641dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/button"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="22dp"
-        android:text="Button"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="160dp" />
+
+    <ImageView
+        android:id="@+id/imColorPicker"
+        android:layout_width="70dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/simplePaint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28"
+        app:srcCompat="@android:drawable/editbox_background" />
+
+    <Button
+        android:id="@+id/circulo"
+        android:layout_width="89dp"
+        android:layout_height="32dp"
+        android:text="Circulo"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imColorPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toEndOf="@+id/imColorPicker"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/linha"
+        android:layout_width="89dp"
+        android:layout_height="32dp"
+        android:text="Linha"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imColorPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toEndOf="@+id/quadrado"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/quadrado"
+        android:layout_width="89dp"
+        android:layout_height="32dp"
+        android:text="Quadrado"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imColorPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toEndOf="@+id/circulo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="174dp"
+        android:layout_height="32dp"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadrado"
+        app:layout_constraintVertical_bias="0.169"
+        tools:text="Limpar" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="178dp"
+        android:layout_height="32dp"
+        android:text="Apagar Elemento"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/quadrado"
+        app:layout_constraintVertical_bias="0.169" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
