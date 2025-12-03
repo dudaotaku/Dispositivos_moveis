@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,12 +22,20 @@ public class MainActivity extends AppCompatActivity {
 
     SimplePaint simplePaint;
     ImageView imColorPicker;
+    Button linha;
+    Button circulo;
+    Button quadrado;
+    Button limpar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
        simplePaint = findViewById(R.id.simplePaint);
+       linha = findViewById(R.id.linha);
+       circulo = findViewById(R.id.circulo);
+       quadrado = findViewById(R.id.quadrado);
+       limpar = findViewById(R.id.limpar);
        imColorPicker = findViewById(R.id.imColorPicker);
        imColorPicker.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -34,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
                colorPickerSelectColor();
            }
        });
-
+        linha.setOnClickListener(v -> simplePaint.botaoSelecionado = 1);
+        circulo.setOnClickListener(v -> simplePaint.botaoSelecionado = 2);
+        quadrado.setOnClickListener(v -> simplePaint.botaoSelecionado = 3);
+        limpar.setOnClickListener(v -> {
+            simplePaint.limparPaint();
+        });
     }
     public void colorPickerSelectColor(){
 
@@ -61,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                     .show();
 
     }
+
+
+
     public void setColor(ColorEnvelope envelope){
 
         simplePaint.setColor(Color.valueOf(envelope.getColor()));

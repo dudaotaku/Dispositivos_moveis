@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,9 @@ public class SimplePaint extends View {
     Paint currentPaint;
     Path currentPath;
     ColorDrawable currentColor;
+    public int botaoSelecionado = 1;
+
+    float startX, startY;
 
     public void setup() {
         mPaintList = new ArrayList<Paint>();
@@ -78,24 +82,108 @@ public class SimplePaint extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                currentPath.moveTo(event.getX(), event.getY());
-                return true;
-            case MotionEvent.ACTION_MOVE:
-                currentPath.lineTo(event.getX(), event.getY());
+        float x = event.getX();
+        float y = event.getY();
+
+        switch (botaoSelecionado) {
+
+            case 1:
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        currentPath.moveTo(x, y);
+                        startX = x;
+                        startY = y;
+                        return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        currentPath.reset();
+                        currentPath.moveTo(startX, startY);
+                        currentPath.lineTo(x, y);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        mPaintList.add(currentPaint);
+                        mPathList.add(currentPath);
+                        initLayerDraw();
+                        break;
+                }
                 break;
-            case MotionEvent.ACTION_UP:
-                currentPath.lineTo(event.getX(), event.getY());
-                mPaintList.add(currentPaint);
-                mPathList.add(currentPath);
-                initLayerDraw();
+
+            case 2:
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startX = x;
+                        startY = y;
+                        return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        float radiusMove = (float) Math.sqrt(
+                                Math.pow(x - startX, 2) +
+                                        Math.pow(y - startY, 2)
+                        );
+                        currentPath.reset();
+                        currentPath.addCircle(startX, startY, radiusMove, Path.Direction.CW);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        float radiusEnd = (float) Math.sqrt(
+                                Math.pow(x - startX, 2) +
+                                        Math.pow(y - startY, 2)
+                        );
+                        currentPath.reset();
+                        currentPath.addCircle(startX, startY, radiusEnd, Path.Direction.CW);
+
+                        mPaintList.add(currentPaint);
+                        mPathList.add(currentPath);
+                        initLayerDraw();
+                        break;
+                }
                 break;
-            default:
-                return false;
+
+            case 3:
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startX = x;
+                        startY = y;
+                        return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        float left = Math.min(startX, x);
+                        float top = Math.min(startY, y);
+                        float right = Math.max(startX, x);
+                        float bottom = Math.max(startY, y);
+
+                        currentPath.reset();
+                        currentPath.addRect(left, top, right, bottom, Path.Direction.CW);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        float L = Math.min(startX, x);
+                        float T = Math.min(startY, y);
+                        float R = Math.max(startX, x);
+                        float B = Math.max(startY, y);
+
+                        currentPath.reset();
+                        currentPath.addRect(L, T, R, B, Path.Direction.CW);
+
+                        mPaintList.add(currentPaint);
+                        mPathList.add(currentPath);
+                        initLayerDraw();
+                        break;
+                }
+                break;
         }
+
         invalidate();
         return true;
+
+    }
+
+    public void limparPaint(){
+        mPaintList.clear();
+        mPathList.clear();
+        currentPath.reset();
+        invalidate();
     }
 
     public void setColor(Color color) {
